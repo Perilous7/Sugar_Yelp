@@ -19,7 +19,7 @@ public class ReviewDaoTest {
     public void getReviewsTest() {
         List<Review> reviews = reviewDao.getReviews();
 
-        int expectedNumOfReview = 4;
+        int expectedNumOfReview = 6;
 
         for (Review review : reviews){
             System.out.println(review);

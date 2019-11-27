@@ -1,10 +1,21 @@
 package com.sugar.ascending.model;
 
+import java.time.LocalDate;
+
 public class Review {
     private int b_id;
     private int c_id;
     private int rate;
     private String content;
+    private LocalDate date;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     @Override
     public String toString() {
@@ -13,6 +24,7 @@ public class Review {
                 ", c_id=" + c_id +
                 ", rate=" + rate +
                 ", content='" + content + '\'' +
+                ", date=" + date +
                 '}';
     }
 

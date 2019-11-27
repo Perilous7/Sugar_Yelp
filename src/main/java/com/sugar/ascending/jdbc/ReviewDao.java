@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class ReviewDao {
                 int rate = rs.getInt("rate");
                 String content = rs.getString("content");
                 int c_id = rs.getInt("c_id");
-
+                Date dt = rs.getDate("create_date");
 
                 //Fill the object
                 Review review = new Review();
@@ -49,6 +51,7 @@ public class ReviewDao {
                 review.setC_id(c_id);
                 review.setContent(content);
                 review.setRate(rate);
+                review.setDate(Instant.ofEpochMilli(dt.getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
                 reviews.add(review);
             }
         } catch (Exception e) {
