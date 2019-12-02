@@ -1,10 +1,25 @@
 package com.sugar.ascending.model;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "business")
 public class Business {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "hours")
     private String hours;
 
     public int getId() {
