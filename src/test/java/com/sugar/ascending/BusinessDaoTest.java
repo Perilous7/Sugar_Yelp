@@ -19,7 +19,7 @@ public class BusinessDaoTest {
     public void getBusinessesTest() {
         List<Business> businesses = businessDao.getBusinesses();
 
-        int expectedNumOfBusiness = 4;
+        int expectedNumOfBusiness = 5;
 
         for (Business business : businesses){
             System.out.println(business);
