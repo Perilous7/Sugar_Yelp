@@ -1,7 +1,10 @@
-package com.sugar.ascending;
+package com.sugar.ascending.jdbc;
 
 import com.sugar.ascending.jdbc.ReviewDao;
+import com.sugar.ascending.model.Business;
+import com.sugar.ascending.model.Customer;
 import com.sugar.ascending.model.Review;
+import com.sugar.ascending.jdbc.BusinessDao;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,10 +13,14 @@ import java.util.List;
 
 public class ReviewDaoTest {
     private ReviewDao reviewDao;
+    private BusinessDao businessDao;
+    private CustomerDao customerDao;
 
     @Before
     public void init(){
         reviewDao = new ReviewDao();
+        businessDao = new BusinessDao();
+        customerDao = new CustomerDao();
     }
     @Test
     public void getReviewsTest() {
@@ -31,12 +38,9 @@ public class ReviewDaoTest {
     public void insertReviewTest(){
         List<Review> reviews = reviewDao.getReviews();
         int NumOfReviewBeforeInsert = reviews.size();
-
-        Review review = new Review();
-        review.setB_id(3);
-        review.setC_id(4);
-        review.setRate(4);
-        review.setContent("delicious food, the service could be better");
+        Business testBusiness = businessDao.getBusinessById(1);
+        Customer testCustomer = customerDao.getCustomerById(1);
+        Review review = new Review(testBusiness,testCustomer,5,"delicious food, the service could be better");
         reviewDao.insertReview(review);
 
         List<Review> reviewsAfterInsert = reviewDao.getReviews();
@@ -51,7 +55,7 @@ public class ReviewDaoTest {
         List<Review> reviews = reviewDao.getReviews();
         int NumOfReviewBeforeDelete = reviews.size();
 
-        String condition = "b_id = 2 AND c_id=1";
+        String condition = "content = 'delicious food, the service could be better'";
         reviewDao.deleteReview(condition);
 
         List<Review> reviewsAfterDelete = reviewDao.getReviews();
@@ -59,6 +63,7 @@ public class ReviewDaoTest {
         Assert.assertEquals(expectedNumOfReviewAfterDelete,NumOfReviewBeforeDelete-1);
     }
 
+    //TODO
     @Test
     public void updateReviewTest(){
         List<Review> reviews = reviewDao.getReviews();

@@ -1,4 +1,4 @@
-package com.sugar.ascending;
+package com.sugar.ascending.jdbc;
 
 import com.sugar.ascending.jdbc.CustomerDao;
 import com.sugar.ascending.model.Customer;

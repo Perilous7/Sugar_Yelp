@@ -1,5 +1,7 @@
 package com.sugar.ascending.jdbc;
 
+import com.sugar.ascending.model.Business;
+import com.sugar.ascending.model.Customer;
 import com.sugar.ascending.model.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,18 +41,20 @@ public class ReviewDao {
             //STEP 4: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                int b_id = rs.getInt("b_id");
+
                 int rate = rs.getInt("rate");
                 String content = rs.getString("content");
                 int c_id = rs.getInt("c_id");
                 Date dt = rs.getDate("create_date");
+                int b_id = rs.getInt("b_id");
+                BusinessDao businessDao = new BusinessDao();
+                Business business = businessDao.getBusinessById(b_id);
+
+                CustomerDao customerDao = new CustomerDao();
+                Customer customer = customerDao.getCustomerById(c_id);
 
                 //Fill the object
-                Review review = new Review();
-                review.setB_id(b_id);
-                review.setC_id(c_id);
-                review.setContent(content);
-                review.setRate(rate);
+                Review review = new Review(business,customer,rate,content);
                 review.setDate(Instant.ofEpochMilli(dt.getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
                 reviews.add(review);
             }
@@ -88,7 +92,7 @@ public class ReviewDao {
             //STEP 3: EXECUTE A QUERY
             logger.info("Create statement..");
             stmt = conn.createStatement();
-            String sql = "INSERT INTO review(b_id,c_id, rate,content) VALUES('"  + review.getB_id() + "', '"  + review.getC_id() +"', '"+
+            String sql = "INSERT INTO review(b_id,c_id, rate,content) VALUES('"  + review.getBusiness().getId() + "', '"  + review.getBusiness().getId() +"', '"+
                     review.getRate()+"', '" +review.getContent() + "')";
             logger.info(sql);
             affected_rows = stmt.executeUpdate(sql);

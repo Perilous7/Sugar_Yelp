@@ -1,9 +1,27 @@
 package com.sugar.ascending.model;
+import org.hibernate.query.criteria.internal.BasicPathUsageException;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "business")
 public class Business {
+
+    public Business(){};
+    public Business(String name, String address, String category, String hours) {
+        this.name = name;
+        this.address = address;
+        this.category = category;
+        this.hours = hours;
+    }
+    public Business(int id,String name, String address, String category, String hours) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.category = category;
+        this.hours = hours;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +39,9 @@ public class Business {
 
     @Column(name = "hours")
     private String hours;
+
+    @OneToMany(mappedBy = "business")
+    private List<Review> reviews;
 
     public int getId() {
         return id;

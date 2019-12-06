@@ -73,6 +73,64 @@ public class BusinessDao {
         return businesses;
     }
 
+    public Business getBusinessById(int businessId) {
+        logger.info("Enter the method getBusinesses");
+        Business business = new Business();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            //STEP 2:OPEN CONNECTION
+            logger.info("Connecting to database..");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //STEP 3: EXECUTE A QUERY
+            logger.info("Create statement..");
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM business where id = "+ businessId;
+            rs = stmt.executeQuery(sql);
+
+            //STEP 4: Extract data from result set
+            while (rs.next()) {
+                //Retrieve by column name
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String category = rs.getString("category");
+                String hours = rs.getString("hours");
+
+
+                //Fill the object
+
+                business.setId(id);
+                business.setName(name);
+                business.setAddress(address);
+                business.setCategory(category);
+                business.setHours(hours);
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            //STEP 6: Finally block used to close resource
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+
+        }
+        logger.info("Exit the method getBusinessById");
+        return business;
+    }
+
+
     public void insertBusiness(Business business) {
         logger.info("Enter the method insertBusiness");
         Connection conn = null;
