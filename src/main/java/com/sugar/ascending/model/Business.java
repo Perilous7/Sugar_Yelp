@@ -1,5 +1,5 @@
 package com.sugar.ascending.model;
-import org.hibernate.query.criteria.internal.BasicPathUsageException;
+
 
 import javax.persistence.*;
 import java.util.List;

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+
 public class BusinessDaoImplTest {
     private static BusinessDao businessDao;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -21,7 +22,7 @@ public class BusinessDaoImplTest {
     @Test
     public void getBusiness() {
         List<Business> businesses = businessDao.getBusinesses();
-        int expected = 5;
+        int expected = 6;
         Assert.assertEquals(expected, businesses.size());
 
     }
@@ -58,17 +59,13 @@ public class BusinessDaoImplTest {
 
     @Test
     public void updateBusiness(){
-        int sizeBefore = businessDao.getBusinesses().size();
-        Business testBusiness = new Business(3,"testName","testRD","testCat","testHours");
-        businessDao.update(testBusiness);
-        String nameBefore= businessDao.getBusinesses().get(sizeBefore-1).getName();
-        Business testBusiness2 = new Business(3,"Ascending",
-                "80 E Jefferson St #300D, Falls Church, VA 22046",
-                "study center",
-                "Monday 9:30AM–6:30PM; Tuesday 9:30AM–6:30PM; Wednesday 9:30AM–6:30PM; Thursday 9:30AM–6:30PM; Friday 9:30AM–6:30PM; Saturday 10AM–5:30PM Sunday Closed");
+        Business testBusiness = new Business("testName","testRD","testCat","testHours");
+        businessDao.save(testBusiness);
+        String nameBefore= testBusiness.getName();
+        int id = testBusiness.getId();
+        Business testBusiness2 = new Business(id, "testName2","testRD","testCat","testHours");
         businessDao.update(testBusiness2);
-        String nameAfter= businessDao.getBusinesses().get(sizeBefore-1).getName();
-        int sizeAfter = businessDao.getBusinesses().size();
+        String nameAfter= testBusiness2.getName();
         Assert.assertNotEquals(nameAfter, nameBefore);
     }
 

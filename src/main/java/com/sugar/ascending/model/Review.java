@@ -10,7 +10,7 @@ public class Review {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "b_id")
     private Business business;
 

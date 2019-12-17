@@ -6,13 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
 
+@Repository
 public class CustomerDaoImpl implements CustomerDao {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired private Logger logger ;
 
     @Override
     public boolean save(Customer customer) {
@@ -88,6 +90,9 @@ public class CustomerDaoImpl implements CustomerDao {
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Customer> query = session.createQuery(hql);
             return query.list();
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
         }
     }
 
@@ -98,6 +103,22 @@ public class CustomerDaoImpl implements CustomerDao {
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("id",id);
             return query.uniqueResult();
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Customer getCustomerByName(String customerName) {
+        String hql = "FROM Customer c where c.name = :name";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Customer> query = session.createQuery(hql);
+            query.setParameter("name",customerName);
+            return query.uniqueResult();
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
         }
     }
 }

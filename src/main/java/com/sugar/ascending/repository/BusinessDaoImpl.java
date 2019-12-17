@@ -6,13 +6,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class BusinessDaoImpl implements BusinessDao {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired private Logger logger;
 
     @Override
     public boolean save(Business business) {
@@ -98,5 +99,17 @@ public class BusinessDaoImpl implements BusinessDao {
             query.setParameter("id", id);
             return query.getSingleResult();
         }
+    }
+
+    @Override
+    public Business getBusinessByName(String businessName) {
+        String hql = "FROM Business b where b.name = :name";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Business> query = session.createQuery(hql);
+            query.setParameter("name", businessName);
+
+            return query.getSingleResult();
+        }
+
     }
 }

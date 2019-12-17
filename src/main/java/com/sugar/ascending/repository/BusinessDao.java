@@ -10,4 +10,5 @@ public interface BusinessDao {
     boolean delete(String businessName);
     List<Business> getBusinesses();
     Business getBusinessById(int id);
+    Business getBusinessByName(String businessId);
 }

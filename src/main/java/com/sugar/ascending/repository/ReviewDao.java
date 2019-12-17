@@ -10,4 +10,6 @@ public interface ReviewDao {
     boolean delete(String reviewName);
     List<Review> getReviews();
     List<Review> getReviewById(int id1,int id2);
+    List<Review> getReviewByBusinessId(int bid);
+    List<Review> getReviewByCustomerId(int cid);
 }

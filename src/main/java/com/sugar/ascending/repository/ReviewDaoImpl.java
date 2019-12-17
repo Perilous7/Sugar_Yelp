@@ -1,20 +1,20 @@
 package com.sugar.ascending.repository;
-
-import com.sugar.ascending.model.Business;
-import com.sugar.ascending.model.Customer;
 import com.sugar.ascending.model.Review;
 import com.sugar.ascending.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
 
+@Repository
 public class ReviewDaoImpl implements ReviewDao {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private Logger logger;
 
     @Override
     public boolean save(Review review) {
@@ -96,14 +96,33 @@ public class ReviewDaoImpl implements ReviewDao {
     @Override
     public  List<Review> getReviewById(int businessId, int customerId)
     {
-//        BusinessDao businessDao = new BusinessDaoImpl();
-//        Business business = businessDao.getBusinessById(b_id);
-//        CustomerDao customerDao = new CustomerDaoImpl();
-//        Customer customer = customerDao.getCustomerById(c_id);
         String hql = "FROM Review r join fetch r.business join fetch r.customer where r.business.id = :b and r.customer.id = :c";
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Review> query = session.createQuery(hql);
             query.setParameter("b",businessId);
+            query.setParameter("c",customerId);
+            return query.list();
+        }
+    }
+
+    @Override
+    public List<Review> getReviewByBusinessId(int businessId) {
+        String hql = "FROM Review r join fetch r.business join fetch r.customer where r.business.id = :b";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Review> query = session.createQuery(hql);
+            query.setParameter("b",businessId);
+            return query.list();
+        }catch (Exception e){
+            logger.error("retrieve data error",e);
+            return null;
+        }
+    }
+
+    @Override
+    public List<Review> getReviewByCustomerId(int customerId) {
+        String hql = "FROM Review r join fetch r.business join fetch r.customer where r.customer.id = :c";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Review> query = session.createQuery(hql);
             query.setParameter("c",customerId);
             return query.list();
         }
