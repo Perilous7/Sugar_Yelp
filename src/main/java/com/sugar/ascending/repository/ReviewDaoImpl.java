@@ -86,7 +86,7 @@ public class ReviewDaoImpl implements ReviewDao {
 
     @Override
     public List<Review> getReviews() {
-        String hql = "FROM Review";
+        String hql = "FROM Review r join fetch r.business join fetch r.customer";
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Review> query = session.createQuery(hql);
             return query.list();
