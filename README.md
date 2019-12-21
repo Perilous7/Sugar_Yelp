@@ -1,4 +1,4 @@
-# Yelp Simulator BootCamp Project
+# Yelp Simulator BootCamp Project:yum:
 
 ## Table of contents:
 * [Project Thoughts](#project-thoughts)    
