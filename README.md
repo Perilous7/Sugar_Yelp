@@ -22,12 +22,12 @@ The word "foodie" seems the best fit when I try to describe myself with one sing
 
 7. Test Restful APIs with Postman;
 
-TO DO:
+TO DO:<br />
 8. Add authentication and certification;
 
-8. Integrate third-party application AWS SQS and do Mock test
+9. Integrate third-party application AWS SQS and do Mock test
 
-9. Package project into a Docker image
+10. Package project into a Docker image
 ## Database Setup:
 Use `docker` to setup local environment(create image and container):
 
