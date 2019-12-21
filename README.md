@@ -22,7 +22,7 @@ The word "foodie" seems the best fit when I try to describe myself with one sing
 
 7. Test Restful APIs with Postman;
 
-TO DO:<br />
+TO DO:
 8. Add authentication and certification;
 
 9. Integrate third-party application AWS SQS and do Mock test
