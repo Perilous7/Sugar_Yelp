@@ -9,7 +9,7 @@
   * [Database Relation](#database-relation)      
     * [Table](#table)        
     * [Relation](#relation) 
-  * [Flyway Migration](#flyway-migration-(at-workspace))
+  * [Flyway Migration](#flyway-migration)
   * [JVM Option Configuration](#jvm-option-configuration)
 * [Demo](#demo)
          
@@ -63,7 +63,9 @@ Review: businessId, customerId, rate, content, createDate.
 2. Single record of review consists of one customer and one business.
 3. One Business may have many Customers reviewed, similarly, One customer may review many businesses.
 
-### Flyway migration (at workspace):
+### Flyway Migration: 
+Go to your workspace:
+
         mvn flyway:info
         mvn flyway:migrate
 ### JVM option configuration:
