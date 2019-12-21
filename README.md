@@ -1,4 +1,8 @@
 # Yelp Simulator BootCamp Project
+
+## Table of contents:
+*[Project Original Thoughts](#project-original-thoughts)
+
 ## Project Original Thoughts:
 The word "foodie" seems the best fit when I try to describe myself with one single word. In fact, I do spend a lot of time searching for good restaurants. Therefore I come up with the idea to replicate the famous food review application "Yelp".
 
