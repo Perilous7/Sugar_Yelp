@@ -1,9 +1,19 @@
 # Yelp Simulator BootCamp Project
 
 ## Table of contents:
-*[Project Original Thoughts](#project-original-thoughts)
+*[Project Thoughts](#project-thoughts)    
+*[Project Technical Overview](#project-technical-overview)  
+*[Project Approach](#project-approach)  
+*[Building Procedure](#building-procedure)  
+  *[Docker Setup](#docker-setup)    
+  *[Database Relation](#database-relation)      
+    *[Table](#table)        
+    *[Relation](#relation)      
+    
 
-## Project Original Thoughts:
+
+
+## Project Thoughts:
 The word "foodie" seems the best fit when I try to describe myself with one single word. In fact, I do spend a lot of time searching for good restaurants. Therefore I come up with the idea to replicate the famous food review application "Yelp".
 
 ## Project Technical Overview:
@@ -32,26 +42,27 @@ TO DO:
 9. Integrate third-party application AWS SQS and do Mock test
 
 10. Package project into a Docker image
-## Database Setup:
+## Building procedure:
+### Docker Setup:
 Use `docker` to setup local environment(create image and container):
 
         docker pull postgres
         docker run --name ${PostgresContainerName} -e POSTGRES_USER=${username} -e POSTGRES_PASSWORD=${password} -e POSTGRES_DB=${databaseName} -p ${hostport}:${containerport} -d postgres
-## Database Relation:
-##### Table: 
+### Database Relation:
+#### Table: 
 Business: id, name, address, category, hours;<br />
 Customer(User): id, name, email, address, age;<br />
 Review: businessId, customerId, rate, content, createDate.
 
-##### Relation:
+#### Relation:
 1. Both Business and Customer tables have id as their primary key separately.
 2. Single record of review consists of one customer and one business.
 3. One Business may have many Customers reviewed, similarly, One customer may review many businesses.
 
-#### Flyway migration (at workspace):
+### Flyway migration (at workspace):
         mvn flyway:info
         mvn flyway:migrate
-## JVM option configuration:
+### JVM option configuration:
         Ddatabase.driverName=${driverName}
         Ddatabase.url=${url}
         Ddatabase.port=${port}
@@ -59,5 +70,5 @@ Review: businessId, customerId, rate, content, createDate.
         Ddatabase.username=${username}
         Ddatabase.password=${password}
 ## Demo 
-#### Postman snapshot for retrieving reviews:
+### Postman snapshot for retrieving reviews:
 ![GitHub Logo](./postman.png)
