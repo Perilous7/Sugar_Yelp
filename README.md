@@ -23,15 +23,17 @@ The word "foodie" seems the best fit when I try to describe myself with one sing
 7. Test Restful APIs with Postman;
 
 TO DO:
+8. Add authentication and certification;
+
 8. Integrate third-party application AWS SQS and do Mock test
 
 9. Package project into a Docker image
-## Database setup 
+## Database Setup:
 Use `docker` to setup local environment(create image and container):
 
         docker pull postgres
         docker run --name ${PostgresContainerName} -e POSTGRES_USER=${username} -e POSTGRES_PASSWORD=${password} -e POSTGRES_DB=${databaseName} -p ${hostport}:${containerport} -d postgres
-## Database relation
+## Database Relation:
 ##### Table: 
 Business: id, name, address, category, hours;<br />
 Customer(User): id, name, email, address, age;<br />
@@ -42,7 +44,9 @@ Review: businessId, customerId, rate, content, createDate.
 2. Single record of review consists of one customer and one business.
 3. One Business may have many Customers reviewed, similarly, One customer may review many businesses.
 
-
+#### Flyway migration (at workspace):
+        mvn flyway:info
+        mvn flyway:migrate
 ## JVM option configuration:
         Ddatabase.driverName=${driverName}
         Ddatabase.url=${url}
