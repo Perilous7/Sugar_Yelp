@@ -1,14 +1,18 @@
 # Yelp Simulator BootCamp Project
 
 ## Table of contents:
-*[Project Thoughts](#project-thoughts)    
-*[Project Technical Overview](#project-technical-overview)  
-*[Project Approach](#project-approach)  
-*[Building Procedure](#building-procedure)  
-  *[Docker Setup](#docker-setup)    
-  *[Database Relation](#database-relation)      
-    *[Table](#table)        
-    *[Relation](#relation)      
+* [Project Thoughts](#project-thoughts)    
+* [Project Technical Overview](#project-technical-overview)  
+* [Project Approach](#project-approach)  
+* [Building Procedure](#building-procedure)  
+  * [Docker Setup](#docker-setup)    
+  * [Database Relation](#database-relation)      
+    * [Table](#table)        
+    * [Relation](#relation) 
+  * [Flyway Migration](#flyway-migration-(at-workspace))
+  * [JVM Option Configuration](#jvm-option-configuration)
+* [Demo](#demo)
+         
     
 
 
