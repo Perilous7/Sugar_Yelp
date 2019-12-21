@@ -1,4 +1,4 @@
-# :hamburger::hamburger:Yelp Simulator BootCamp Project:hamburger::hamburger:
+# :hamburger:Yelp Simulator BootCamp Project:hamburger:
 
 ## Table of contents:
 * [Project Thoughts](#project-thoughts)    
