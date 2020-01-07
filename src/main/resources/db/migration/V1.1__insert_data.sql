@@ -8,10 +8,10 @@ insert into business (name, address, category, hours) values
 
 
 commit;
-insert into customer (name, email, address, age) values
-('Sugar','ruichen.zhou82@gmail.com', '9422 Mirror Pond dr,Fairfax,VA22032', 24),
-('Han Wang','hanwang945@gmail.com',	'392 Wentworth Street Southington, CT 06489', 23),
-('Iron man','ironman@gmail.com','10880 Malibu Point, CT 90265',49),
-('Cool kid','iamsocool@gmail.com',	null, 15);
+insert into customer (name, email, address, age, password) values
+('Sugar','ruichen.zhou82@gmail.com', '9422 Mirror Pond dr,Fairfax,VA22032', 24, 'qwertyuiop'),
+('Han Wang','hanwang945@gmail.com',	'392 Wentworth Street Southington, CT 06489', 23,'qwertyuiop'),
+('Iron man','ironman@gmail.com','10880 Malibu Point, CT 90265',49,'qwertyuiop'),
+('Cool kid','iamsocool@gmail.com',	null, 15,'qwertyuiop');
 ;
 commit;

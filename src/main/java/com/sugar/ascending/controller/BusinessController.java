@@ -1,4 +1,4 @@
-package com.sugar.ascending.Controller;
+package com.sugar.ascending.controller;
 
 import com.sugar.ascending.model.Business;
 import com.sugar.ascending.service.BusinessService;

@@ -1,5 +1,6 @@
-package com.sugar.ascending.Controller;
+package com.sugar.ascending.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sugar.ascending.model.Customer;
 import com.sugar.ascending.service.CustomerService;
 import com.sugar.ascending.service.ReviewService;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = {"/customer"})
@@ -24,9 +26,10 @@ public class CustomerController {
         this.customerService = customerService;
         this.reviewService= reviewService;
     }
+    @JsonView({Customer.Advance.class})
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Customer> getCustomers() {
-        return customerService.getCustomers();
+    public Set<Customer> getCustomers() {
+        return customerService.getCustomersFetchRole();
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})

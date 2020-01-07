@@ -1,20 +1,40 @@
 package com.sugar.ascending.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="customer")
-public class Customer {
+public class Customer implements Serializable {
+
+    public interface Basic{};
+    public interface Advance extends Basic{};
+    public interface AnotherBasic{};
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @JsonView({Basic.class,Advance.class})
     @Column(name = "name")
     private String name;
+
+    @JsonView({Basic.class,Advance.class})
     @Column(name = "email")
     private String email;
+    @JsonView({Basic.class,Advance.class})
     @Column(name = "address")
     private String address;
+    @Column(name = "password")
+    private String password;
+
+    @JsonView({Advance.class})
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    @JoinTable(name = "customer_role", joinColumns = {@JoinColumn(name = "customer_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private List<Role> roles;
 
     public Customer(){};
     public Customer(int id, String name, String email, String address, int age) {
@@ -72,6 +92,18 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

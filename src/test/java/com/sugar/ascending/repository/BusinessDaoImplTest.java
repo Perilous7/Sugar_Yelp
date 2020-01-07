@@ -1,21 +1,27 @@
 package com.sugar.ascending.repository;
 
+import com.sugar.ascending.init.AppInitializer;
 import com.sugar.ascending.model.Business;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-
+@RunWith(SpringRunner.class)
+@SpringBootTest(
+        classes = {AppInitializer.class}
+)
 public class BusinessDaoImplTest {
-    private static BusinessDao businessDao;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private BusinessDao businessDao;
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         businessDao = new BusinessDaoImpl();
     }
 

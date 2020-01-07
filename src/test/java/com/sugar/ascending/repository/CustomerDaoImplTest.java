@@ -1,22 +1,28 @@
 package com.sugar.ascending.repository;
 
+import com.sugar.ascending.init.AppInitializer;
 import com.sugar.ascending.model.Customer;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+@RunWith(SpringRunner.class)
+@SpringBootTest(
+        classes = {AppInitializer.class}
+)
+public class CustomerDaoImplTest  {
+    @Autowired
+    private  CustomerDao customerDao;
 
-public class CustomerDaoImplTest {
-    private static CustomerDao customerDao;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @BeforeClass
-    public static void init() {
-        customerDao = new CustomerDaoImpl();
-    }
+    @Before
+    public void init() { }
 
     @Test
     public void getCustomer() {

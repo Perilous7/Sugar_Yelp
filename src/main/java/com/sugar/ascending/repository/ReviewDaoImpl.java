@@ -2,13 +2,12 @@ package com.sugar.ascending.repository;
 import com.sugar.ascending.model.Review;
 import com.sugar.ascending.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-
 import java.util.List;
 
 @Repository
@@ -16,14 +15,17 @@ public class ReviewDaoImpl implements ReviewDao {
     @Autowired
     private Logger logger;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public boolean save(Review review) {
         Transaction transaction = null;
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();//no need to close manually, create one if none found, get if found
-            //session = HibernateUtil.getSessionFactory().openSession();// create new one, close manually
+            Session session = sessionFactory.getCurrentSession();//no need to close manually, create one if none found, get if found
+            //session = sessionFactory.openSession();// create new one, close manually
             transaction  = session.beginTransaction();
             session.save(review);
             transaction.commit();

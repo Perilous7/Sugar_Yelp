@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -36,6 +37,10 @@ public class CustomerService {
         return customerDao.getCustomers();
     }
 
+    public Set<Customer> getCustomersFetchRole() {
+        return customerDao.getCustomersFetch();
+    }
+
     public Customer getCustomerById(int id) {
         return customerDao.getCustomerById(id);
     }
@@ -43,5 +48,7 @@ public class CustomerService {
     public Customer getCustomerByName(String customerName) {
         return customerDao.getCustomerByName(customerName);
     }
+
+    public Customer getCustomerByCredentials(String email, String password){return customerDao.getUserByCredentials(email, password);}
 
 }

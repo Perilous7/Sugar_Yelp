@@ -12,7 +12,9 @@ CREATE TABLE customer (
    name            VARCHAR(30) not null unique,
    email           VARCHAR(50),
    address         VARCHAR(150),
-   age              INTEGER
+   age              INTEGER,
+   password         VARCHAR(30)
+
 );
 ALTER TABLE customer ADD CONSTRAINT customer_pk PRIMARY KEY ( id );
 CREATE TABLE review (
