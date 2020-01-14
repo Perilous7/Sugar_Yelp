@@ -1,11 +1,10 @@
 package com.sugar.ascending.init;
-import com.sugar.ascending.util.HibernateUtil;
-import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cache.annotation.EnableCaching;
 
+@EnableCaching
 @ServletComponentScan(basePackages =  ("com.sugar.ascending.filter"))
 @SpringBootApplication(scanBasePackages = {"com.sugar.ascending"})
     public class AppInitializer {

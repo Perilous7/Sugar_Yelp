@@ -2,11 +2,12 @@ package com.sugar.ascending.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "business")
-public class Business {
+public class Business implements Serializable  {
 
     public Business(){};
     public Business(String name, String address, String category, String hours) {

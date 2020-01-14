@@ -5,9 +5,12 @@ import com.sugar.ascending.service.BusinessService;
 import com.sugar.ascending.service.ReviewService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
@@ -32,16 +35,19 @@ public class BusinessController {
         return businessService.getBusinesses();
     }
 
+    @Cacheable( value = "business")
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Business getBusinessById(@PathVariable int id) {
         return businessService.getBusinessById(id);
     }
 
+    @Cacheable( value = "business")
     @RequestMapping(value = "/name/{businessName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Business getBusinessByName(@PathVariable String businessName) {
         return businessService.getBusinessByName(businessName);
     }
 
+    @CacheEvict(value = "business",allEntries = true)
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String createBusiness(@RequestBody Business business) {
         logger.debug("Business: " + business.toString());

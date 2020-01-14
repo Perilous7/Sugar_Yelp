@@ -41,6 +41,10 @@
       <version>5.4.3.Final</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.github.v-ladynev</groupId>
       <artifactId>fluent-hibernate-core</artifactId>
       <version>0.3.1</version>
@@ -57,20 +61,23 @@
       <version>0.9.1</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.2.5</version>
     </dependency>
     <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk</artifactId>
+      <version>1.11.592</version>
+    </dependency>
+    <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.slf4j</groupId>-->
-<!--      <artifactId>slf4j-simple</artifactId>-->
-<!--      <version>1.7.26</version>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>

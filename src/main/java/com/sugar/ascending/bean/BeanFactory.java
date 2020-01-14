@@ -1,4 +1,8 @@
-package com.sugar.ascending.config;
+package com.sugar.ascending.bean;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.sugar.ascending.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -8,11 +12,10 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
 
 @Configuration
-//@Component
-public class DatabaseConfig {
+public class BeanFactory {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Logger logger(InjectionPoint injectionPoint) {
@@ -22,5 +25,11 @@ public class DatabaseConfig {
     @Bean
     public SessionFactory SessionFactory(){
         return HibernateUtil.getSessionFactory();
+    }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public AmazonS3 amazonS3(){
+        return AmazonS3ClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain()).withRegion(Regions.US_EAST_1).build();
     }
 }

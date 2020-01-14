@@ -19,6 +19,7 @@ public class AuthServiceImpl implements AuthService {
     private Logger logger;
     private CustomerService userService;
     private static String AUTH_URI = "/auth";
+    private static String ACTUATOR_URI = "/actuator";
 
     @Autowired
     public AuthServiceImpl(Logger logger, CustomerService userService) {
@@ -33,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
         String verb = req.getMethod();
         String msg = "No valid token found.";
         if (uri.startsWith(AUTH_URI)) return HttpServletResponse.SC_ACCEPTED;
+        if (uri.startsWith(ACTUATOR_URI)) return HttpServletResponse.SC_ACCEPTED;
 
         try {
             String token = req.getHeader("Authorization").replaceAll("^(.*?) ", "");
