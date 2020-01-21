@@ -22,7 +22,6 @@ import java.util.Date;
 
 
 @Service
-@Scope()
 public class FileServiceImpl implements FileService {
     private Logger logger;
     private AmazonS3 amazonS3;
